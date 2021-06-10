@@ -216,6 +216,8 @@ En esta sección podemos configurar varias varibles de interés, para nuestro ca
 
 Ya con la extensión instalada y correctamente configurada, podemos compilar los archivos de Solidity con el comando F5 para compilar solamente el archivo actualmente abierto en el editor, o Ctrl + F5, lo que generará los archivos de salida para el despliegue en la carpeta **bin**.
 ![Compilados](https://github.com/saarboledaz/guia_solidity/blob/main/Recursos/vs_compiled.PNG?raw=true)
+
+
 Estos archivos son suficientes para poder desplegar un contrato en la red de ethereum.
 
 > Escrito con [StackEdit](https://stackedit.io/).
