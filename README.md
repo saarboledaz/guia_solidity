@@ -1,4 +1,4 @@
-
+﻿
 # Guía para aprendizaje de desarrollo de Contratos Inteligentes en Solidity
 
 ## ¿Qué es un contrato inteligente?
@@ -85,16 +85,16 @@ Adicionalmente se debe tener en cuenta que al asignar una variable como una estr
 
 Tomado de [GeeksForGeeks](https://www.geeksforgeeks.org/storage-vs-memory-in-solidity/)
 
-Un ejemplo para demostrar esta temática de memoria puede ser encontrado en el [Repositorio de ejemplos](https://github.com/saarboledaz/guia_solidity/tree/main/Ejemplos).
+Un ejemplo para demostrar esta temática de memoria puede ser encontrado en el [repositorio de ejemplos](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/memory.sol).
 
 ## Tipos de Variable
 
-A continuación se exponen en el siguiente código los tipos de variables más comunes en Solidity.
+A continuación se exponen en el siguiente [ejemplo](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/variables.sol) los tipos de variables más comunes en Solidity.
 
 ## Variables y Funciones Globales de Interés
 Solidity cuenta con una gran variedad de funciones y variables nativas para brindar diferentes utilidades frente al desarrollo de contratos inteligentes en Solidity, entre varios usos, generalmente nos permiten codificar y decodificar, encriptar y desencriptar, obtener datos de las transacciones o llamadas y obtener información sobre el bloque de ejecución de la instrucción.
 
-A continuación se muestra un contrato de ejemplo que usa varias funciones y variables globales de interés
+A continuación se muestra un contrato de [ejemplo](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/globalVariables.sol) que usa varias funciones y variables globales de interés
 
 ## Visibilidad de variables y funciones
 Solidity, como la gran mayoría de lenguajes con un alto enfoque orientado a objetos, brinda la posibilidad de establecer la visibilidad de las variables y las funciones, existen 4 tipos de visibilidad.
@@ -116,7 +116,7 @@ las funciones y variables a ser usadas por su mismo contrato y contratos que her
 ### Externa (*external*)
 La visibilidad externa restringe el uso de las funciones a contratos y cuentas externas al contrato que las contenga, en consecuencia no es posible declarar variables de estado que sean externas ya que no tendrían ningún tipo de uso para el contrato en sí.
 
-Los diferentes tipos de visibilidad pueden contemplarse mejor en el siguiente ejemplo
+Los diferentes tipos de visibilidad pueden contemplarse mejor en el siguiente [ejemplo](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/visibility.sol).
 
 ## Modificadores
 
@@ -148,10 +148,10 @@ Los modificadores declarados permiten aplicar restricciones o disparar comportam
 	    	// del resto de los modificadores y la funcion.
     }
 
-Un buen ejemplo de aplicación es la implementación de una Tienda simple, que puede ser visualizada [aquí](aqu%C3%AD).
+Un buen ejemplo de aplicación es la implementación de una Tienda simple, que puede ser visualizada [aquí](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/tienda.sol).
 
 ## Herencia
-Solidity tiene soporte para herencia múltiple y polimorfismo, este tema es bastante extenso y no se explicará a fondo en la guía, sin embargo se proveerá un ejemplo del uso básico de esta que se puede encontrar en el [repositorio](asd).
+Solidity tiene soporte para herencia múltiple y polimorfismo, este tema es bastante extenso y no se explicará a fondo en la guía, sin embargo se proveerá un ejemplo del uso básico de esta que se puede encontrar en el [repositorio](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/auction_inheritance.sol).
 
 ## Interacción entre contratos
 
@@ -170,7 +170,7 @@ o si el contrato ya está desplegado
     address direccion = 0X001D3F1EF827552AE1114027BD3ECF1F086BA0F9
     Tienda miTienda = Tienda(direccion); // Obtener la instancia ya desplegada
 
-Un ejemplo de interacción de contratos puede ser encontrado en el [repositorio](roca).
+Un ejemplo de interacción de contratos puede ser encontrado en el [repositorio](https://github.com/saarboledaz/guia_solidity/blob/main/Ejemplos/instantiation.sol).
 
 ## Entornos de Desarrollo
 
@@ -185,12 +185,14 @@ Se recomienda el uso de Remix para el aprendizaje de Solidity y el desarrollo de
 #### Ingreso
 Dirigirse a la página web de Remix: https://remix.ethereum.org/
 #### Creación de un contrato
-Para crear un contrato o un archivo .sol, se debe seleccionar el explorador de archivos, allí encontraremos una estructura de carpetas que son un ejemplo de un proyecto en Solidity, en este explorador de archivos podemos crear y subir archivos como lo haríamos con cualquier explorador de archivos. Crearemos un archivo llamado **prueba.sol**.   ![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_22c4f79a9705c6f7.png)
+Para crear un contrato o un archivo .sol, se debe seleccionar el explorador de archivos, allí encontraremos una estructura de carpetas que son un ejemplo de un proyecto en Solidity, en este explorador de archivos podemos crear y subir archivos como lo haríamos con cualquier explorador de archivos. Crearemos un archivo llamado **prueba.sol**.   
+
+![Explorador de archivos](https://raw.githubusercontent.com/saarboledaz/guia_solidity/main/Recursos/remix_fileexp.png)
 #### Compilación
 Una vez tengamos nuestro contrato de Solidity creado, debemos desplazarnos para la pestaña ‘Solidity Compiler’ en la parte izquierda de la pantalla, hecho esto se desplegaran varias opciones para poder compilar el archivo creado. Debemos seleccionar la versión adecuada de Solidity que queremos compilar según el _**pragma**_ que indique el archivo , finalmente oprimimos el botón de Compilación (o usamos el atajo Ctrl + S), en caso de estar correcto el contrato y no tener errores de sintaxis se compilará , de lo contrario se mostrarán en el editor de texto las líneas que presentan los errores que impiden que se compile el contrato.
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_e17f39d6a570809b.png)  
+![Compilación](https://raw.githubusercontent.com/saarboledaz/guia_solidity/main/Recursos/remix_compiler.png)  
 #### Despliegue
-Para finalizar, después de haber compilado exitosamente nuestro archivo, podemos desplegar el mismo a diferentes entornoes de ethereum en línea o a la máquina virtual de JavaScript que genera Remix en el navegador, para esto debemos dirigirnos a la pestaña de despliegue y ejecución de transacciones. Esta pestaña presenta varios parámetros de interés:
+Para finalizar, después de haber compilado exitosamente nuestro archivo, podemos desplegar el mismo a diferentes entornos de Ethereum en línea o a la máquina virtual de JavaScript que genera Remix en el navegador, para esto debemos dirigirnos a la pestaña de despliegue y ejecución de transacciones. Esta pestaña presenta varios parámetros de interés:
     
 
  - Entorno: generalmente para usos de pruebas internas y aprendizaje se debe usar la opción ‘JavaScript VM’, para más información por favor leer la guía de **entornos de despliegue** e interacción de contratos.
@@ -199,22 +201,22 @@ Para finalizar, después de haber compilado exitosamente nuestro archivo, podemo
  - Valor de ETH: el valor en ethereum que se va a enviar con la transacción, el caso de un despliegue debe ser 0.
  - Contrato: el contrato a desplegar, en nuestro caso es **prueba.sol**
 
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_26742463582a7f4c.png)  
+![Despliegue](https://raw.githubusercontent.com/saarboledaz/guia_solidity/main/Recursos/remix_deploy.png)  
 
 #### Interacción
 Para poder interactuar con el contrato desplegado podemos usar la interfaz dispuesta por Remix, ubicada en la sección de contratos desplegados.
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_47bdd390fc355dc.png)
+![Interaccion](https://raw.githubusercontent.com/saarboledaz/guia_solidity/main/Recursos/remix_testing.png)
 ### Visual Studio Code
 También es posible desarrollar y compilar contratos de manera local con el uso de Visual Studio Code y el compilador de Solidity. Para esto debemos instalar la extensión con id **juanblanco.solidity** y la instalamos, posteriormente vamos a necesitar recargar el programa.
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_83a701ee19f23779.png)  
+![Extension](https://github.com/saarboledaz/guia_solidity/blob/main/Recursos/vs_solidity.png?raw=true)  
 Una vez instalada la extensión podemos remitirnos a la configuración de la misma, accediendo con el comando ‘Ctrl + ,’ o mediante la siguiente ruta, y luego escribimos en el buscador ‘Solidity’.
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_99505a177a7e0247.png)  
-En esta sección podemos configurar varias varibles de interés, para nuestro caso fijaremos la vista en las opciones de _**Compile Using Local Version**_ y _**Compile Using Remote Version**_**,** estas opciones permiten decidir sobre qué compilador se usará para los archivos de solidity, en la primera pondríamos la ruta en nuestro equipo en la que se encuentra el programa compilador **solc** (este compilador se puede obtener a través de la página de [Github de Ethereum](https://github.com/ethereum/solc-bin/)) también podemos optar por dejar vacía esta opción, en la segunda pondríamos la versión específica del compilador que se quiere usar, la versión especificada se descargará de las fuentes oficiales, para siempre descargar la última versión estable disponible se debe usar el parámetro ‘latest’.
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_7b6dd5e51921eabb.png)
+![Preferencias](https://github.com/saarboledaz/guia_solidity/blob/main/Recursos/vs_preferences.png?raw=true)  
+En esta sección podemos configurar varias varibles de interés, para nuestro caso fijaremos la vista en las opciones de _**Compile Using Local Version**_ y _**Compile Using Remote Version**_**,** estas opciones permiten decidir sobre qué compilador se usará para los archivos de Solidity, en la primera pondríamos la ruta en nuestro equipo en la que se encuentra el programa compilador **solc** (este compilador se puede obtener a través de la página de [Github de Ethereum](https://github.com/ethereum/solc-bin/)) también podemos optar por dejar vacía esta opción, en la segunda pondríamos la versión específica del compilador que se quiere usar, la versión especificada se descargará de las fuentes oficiales, para siempre descargar la última versión estable disponible se debe usar el parámetro ‘latest’.
+![Preferencias 2](https://github.com/saarboledaz/guia_solidity/blob/main/Recursos/vs_preferences1.png?raw=true)
 
 Ya con la extensión instalada y correctamente configurada, podemos compilar los archivos de Solidity con el comando F5 para compilar solamente el archivo actualmente abierto en el editor, o Ctrl + F5, lo que generará los archivos de salida para el despliegue en la carpeta **bin**.
-![](file:///C:/Users/SAARBO~1/AppData/Local/Temp/lu115089ylb5z.tmp/lu115089ylb6k_tmp_2572ad92ed650cc3.png)  
+![Compilados](https://github.com/saarboledaz/guia_solidity/blob/main/Recursos/vs_compiled.PNG?raw=true)
 Estos archivos son suficientes para poder desplegar un contrato en la red de ethereum.
 
-> Written with [StackEdit](https://stackedit.io/).
+> Escrito con [StackEdit](https://stackedit.io/).
 
