@@ -1,16 +1,25 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.4;
 
-
+// Contrato de 'Transaccion' inteligente, cuyo fin es controlar la transferencia de los fondos
+// dandole todo el poder de desicion al remitente de la transaccion, lo que le permite confirmar,
+// rechazar o expirar la transaccion
 contract SmartTransaction {
-    address payable public sender;
-    address payable public receiver;
-    uint public transactionValue;
-    PossibleStatus public status;
-    enum PossibleStatus{Pending, Confirmed, Rejected, Expired}
-    bool public balanceReceived = false;
-    uint public expirationTime;
+    address payable public sender; // Direccion del remitente
+    address payable public receiver; // Direccion del destinatario
+    uint public transactionValue; // Variable para alojar el valor de la transaccion
+    PossibleStatus public status; // Estado de la transaccion
+    enum PossibleStatus{Pending, Confirmed, Rejected, Expired} // Posibles estados de la transaccion
+    bool public balanceReceived = false; // Fondos recibidos desde el remitente
+    uint public expirationTime; // Tiempo de expiracion en segundos
 
+    /**
+    Constructor del contrato
+    _sender: direccion del remitente
+    _receiver: direccion del destinatario
+    _expectedValue: valor espereado que debe recibir la transaccion
+    _timeToExpire: tiempo en segundos para que expire la transaccion
+     */
     constructor(address _sender, address _receiver,uint _expectedValue, uint _timeToExpire){
         sender = payable(_sender);
         receiver = payable(_receiver);
@@ -19,11 +28,14 @@ contract SmartTransaction {
         status = PossibleStatus.Pending;
     }
 
+    // Modificador para que restringe acceso solo al remitente
     modifier onlySender(){
         require(msg.sender == sender, "Solo el remitente de la transaccion puede ejecutar esta funcion");
         _;
     }
 
+    // Modificador que verifica que la transaccion haya expirado, si expira cambia el estado de la transaccion
+    // a expirado y reembolsa los fondos al remitente
     modifier checkExpiration(){
         if(block.timestamp > expirationTime){
             status = PossibleStatus.Expired;
@@ -32,22 +44,34 @@ contract SmartTransaction {
         _;
     }
 
+    // Modificador que verifica que la transaccion no haya sido resuelta
     modifier needsResolve(){
         require(status == PossibleStatus.Pending, "La transaccion ya fue definida");
         _;
     }
 
 
+    /**
+    Funcion para confirmar la transaccion, cambia el estado de la transaccion a 'Confirmada'
+    y transfiere los fondos al destinatario
+     */
     function confirm() onlySender checkExpiration needsResolve public{
         status = PossibleStatus.Confirmed;
         receiver.transfer(transactionValue);
     }
 
+    /**
+    Funcion para rechazar la transaccion, cambia el estado de la transaccion a 'Rechazado'
+    y reembolsa los fondos al remitente
+     */
     function reject() onlySender checkExpiration needsResolve public{
         status = PossibleStatus.Rejected;
         sender.transfer(transactionValue);
     } 
 
+    /**
+    Funcion para recibir los fondos desde el remitente
+     */
     function receiveValue() onlySender checkExpiration needsResolve payable public {
         require(balanceReceived == false, "Ya se recibio el dinero previamente");
         require(msg.value == transactionValue , "No es el valor esperado");
@@ -67,7 +91,8 @@ contract SimpleStore {
     mapping(string => Product) private products; // Mapa de productos
     SmartTransaction[] private transactions; // La información de las compras de los clientes es confidencial
     address internal owner; // Variable para guardar la dirección del owner del contrato
-    
+
+    // Modificador para verificar el dueño de la tienda 
     modifier onlyOwner{
         require(msg.sender == owner, "Solo el owner de la tienda puede utilizar esta funcion");
         _;
